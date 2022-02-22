@@ -18,9 +18,6 @@ interface UserService {
 
   @GET("users")
   suspend fun getAll(): Response<List<User>>
-
-  @GET("users/:id")
-  suspend fun getById(@Path("id") id: Int): Response<User>
 }
 
 

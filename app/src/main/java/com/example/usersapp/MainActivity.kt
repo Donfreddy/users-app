@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.usersapp.network.Resource
 import com.google.android.material.snackbar.Snackbar
-import com.sevengps.sdn_mobile_app.repository.Repository
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,8 +43,7 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    //
-    registerNetworkBroadcast()
+    // registerNetworkBroadcast()
 
     userRecyclerView = findViewById(R.id.user_lists)
     constraintLayout = findViewById(R.id.root)
@@ -62,14 +60,9 @@ class MainActivity : AppCompatActivity() {
         }
         is Resource.Success -> {
           res.data?.let { result ->
-            val adapter = UserAdapter(result)
+            val adapter = UserAdapter(result, this)
             userRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             userRecyclerView.adapter = adapter
-//            val userCardView: CardView = userRecyclerView.findViewById(R.id.cv_user)
-//            userCardView.setOnClickListener{
-//              Toast.makeText(this, "View User Detail", Toast.LENGTH_LONG).show()
-//            }
-
           }
         }
         is Resource.Error -> {
